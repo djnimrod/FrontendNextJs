@@ -1,3 +1,38 @@
+Frontend Books
+
+para ejecutar 
+ - npm run dev
+- los archivos .ts deben ser .tsx
+para evitar errores en compilacion.
+
+para los test se usa Cypress
+
+- npm install cypress -D // solo para development
+
+para abrir cypress
+- npx cypress open
+
+abrimos la opcion e2e testing
+
+para configurar la herramienta
+
+elegimos chrome para usar la herramienta
+y luego create new empty specs para que nos genere un test vacio.
+
+- se pone la url del backend que tenemos que hacer el test en el archivo config.
+- renombramos el archivo .cy.ts a books.
+- 
+min 1.17 2da clase
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
