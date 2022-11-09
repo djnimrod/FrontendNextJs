@@ -23,7 +23,9 @@ export async function getStaticPaths(){
         paths : data.map( book => {
            return { params : { bid : String (book.id) }}
         }),
-        fallback: false
+        fallback: 'blocking'
+        // cambiamos de false a 'blocking' para que se ejecute al instante
+        // ssr server side rendering..osea a demanda o peticion se hace la actualizacion de la vista
     }
 }
 

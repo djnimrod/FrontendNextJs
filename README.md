@@ -22,7 +22,156 @@ y luego create new empty specs para que nos genere un test vacio.
 - se pone la url del backend que tenemos que hacer el test en el archivo config.
 - renombramos el archivo .cy.ts a books.
 - 
-min 1.17 2da clase
+apr.li/do
+
+- promo para digital Ocean 200$
+
+- iniciar sesion en Digital Ocean
+
+se usara servicios en de app, no droplets
+el enfoque de las app es de preocuparse por el desarrollo no por el servidor.
+- crear -> Apps
+luego selecionamos gitHub y elejimos el repositorio,
+podria pedirnos permiso.
+seleccionamos el backend
+luego la rama principal estable Main
+opcional el directorio de codigo. lo dejamos con  /
+y selecionado el autodeploy.
+le damos siguiente y nos muestra la app con un nombre
+el webservice ya deberia detectar que es una app de php
+verificando los datos podemos ver en la http request en routes
+editamos a /backend para que el nombre aleatorio del dominio este https://nombrealeaotrio.ondigialcocean.app/backend. 
+cuando subamos el frontend solo lo dejamos con / para diferenciar.
+le damos guardar y back
+vamos a editar el plan para ver el costo en produccion.
+por defecto esta en PRO
+elegimos plan basico
+en size de 5$ mensual
+este tiene un container
+esta bien para prototipos.. 
+le damos siguente y definimos variables de entorno
+la primera keys sera APP_KEY
+esa la extraemos del .env de laravel
+puede ser la misma o generamos otra:
+php artisan key:generate
+copiamos nueva clave y generamos otra por si acaso
+guardamos y siguente.. podemos generar mas variables pero sera mas adelante
+- ahora podemos editar el nombre de la app
+guardamos y next
+
+vamos al panel de resources y hay que adicionar una bd
+add resource(optional)
+configuramos nuestra database, solo hay postgreSql disponible, se muestra el detalle de ram y cpu que usara, esta nos dice que no es recomendable para produccion pero mas adelante se puede actualizar.
+
+podemos colocar el nombre a la bd.
+y nos dice el costo mensual para la bd. 7$
+
+le damos crear y agregar - create and attach
+ se muestra los dos recursos en la app.
+ y le damos next, next, en la region siempre buscamos la mas cercana, por defecto es la mas cercana pero podemos editarla,tambien se crea el cdn y el ssl automaticamente.
+
+ le damos Next
+ y nos da el resumen de cuanto se pagara mensualmente.
+
+ ~ 5 + 7 = 12$
+
+le damos create resources
+esto no da un servidor activo 24/7, no nos preocupamos por nada mas
+se construyen el build. y tardara unos minutos para el deploy.
+
+con la url que nos da no tenemos nada porque no hay nada en nuestro welcome / , no existe
+luego errores si le add la ruta libros..
+falta configurar la conexion a la bd.
+
+usamos 
+- cat storage/logs/laravel.log 
+para ver el registro de eventos 
+
+vamos al recurso de la bd.
+vemos los parametros de conexion y los copiamos.
+volvemos al backend y en las variables de entorno
+buscamos el boton de bulk editor que nos despliega un cuadro para texto plano y pegamos la conexion.
+
+vamos a laravel, al .env y pegamos todas las variables de entorno respecto a la bd, que usaremos para rellenarlo, pasamos el valos de cada variable al entorno de laravel.
+eliminamos loque no usamos y le damos guardar
+abrimos la terminal de Digital ocean , y ejecutamos las migrations.
+
+- php artisan migrate -- =force
+
+muestra vacio la respuesta []
+
+** ahora el frontend
+
+creamos otro recurso para el frontend
+elegimos desde github
+elegimos la rama. el source /
+autodeploy activado
+next
+
+en webservice le cambiamos el nombre solo frontend
+
+en la ruta le dejamos que este en /
+el mismo plan de 5$ 
+next
+configuramos variables de entorno de la aplicacion
+del .env. de nextJs
+el nexpublicbacken url en aprender mas..
+
+key URL values ${APP_url} esta es la manera
+pero de momento seguimos con nuestra variable.
+
+copiamos la url del backend generado por digital ocean
+url/backend como definimos en el deploy anterior
+le damos guardar y podemos editar cuando tengamos otro dominio
+
+le damos siguente y vemos el detalle del costo.
+
+backend  7$
+frontend 5$
+mensual  12$
+
+le damos create resources..
+acaba el deploy y accedemos a la url
+
+vemos que cuando creamos un libro vuelve pero no muestra el nuevo libro.
+usamos la consola del backend de DO.
+esto ocurre solo en nextJs.
+
+- php artisan tinker
+
+- Book::get()
+
+nos muestra el libro recien creado.
+
+como usamos en pages/index, solo de ejecuta cuando hacemos un build. cuando se hace un cambio en el repositorio y se genera el contenido estatico en el programa
+ se hacen cambios en el next js para que se cambie bajo demanda tipo SSR.en el servidor.
+
+se hace auto depoy cuando se hace cambio al codigo
+
+y se ven los cambios al crear un libro.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

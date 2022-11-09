@@ -1,7 +1,9 @@
 import Link from "next/link"
 
-
-export async function getStaticProps(){
+// este metodo -getStaticProps- solo se ejecuta cuando se hace un build(deploy).
+// o cuando se hace un commit y se vuelve a ver los cambios en el codigo - repositorio
+//asi que la cambiamos con -getServerSideProps-
+export async function getServerSideProps(){
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books`)
 
@@ -11,6 +13,8 @@ export async function getStaticProps(){
                 props:{
                     books: data
                 },
+            //revalidate: 10    
+            // con revalidate se ejecuta cada 10 seg de acuerdo a la data
             };
         
 }
